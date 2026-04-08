@@ -18,6 +18,9 @@ WEBHOOK_HOST: str = os.getenv("WEBHOOK_HOST", "")
 WEBHOOK_PATH: str = os.getenv("WEBHOOK_PATH", "/webhook")
 WEBHOOK_URL: str = f"{WEBHOOK_HOST}{WEBHOOK_PATH}"
 
+# Mini App URL (HTTPS kerak, masalan: https://yourdomain.com)
+WEBAPP_URL: str = os.getenv("WEBAPP_URL", "")
+
 # Xarajat limiti ogohlantirish foizi
 BUDGET_WARNING_THRESHOLD: int = 80   # 80% da ogohlantirish
 BUDGET_EXCEEDED_THRESHOLD: int = 100 # 100% da xabar

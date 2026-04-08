@@ -21,9 +21,30 @@ services:
     build: .
     restart: unless-stopped
     env_file: .env
+    ports:
+      # Mavjud reverse proxy variant uchun — localhost:8080
+      # Agar faqat nginx (8443) ishlatsa, "ports" ni "expose" ga almashtiring
+      - "8080:8080"
     depends_on:
       db:
         condition: service_healthy
+    networks:
+      - hamyon_net
+
+  # Nginx reverse proxy — HTTPS (port 8443)
+  # 80 va 443 band bo'lgani uchun 8443 ishlatiladi
+  nginx:
+    build: ./nginx
+    restart: unless-stopped
+    ports:
+      - "8443:443"
+    volumes:
+      # Production uchun: real SSL sertifikatlarni mount qiling
+      # - /path/to/your/cert.pem:/etc/nginx/ssl/cert.pem:ro
+      # - /path/to/your/key.pem:/etc/nginx/ssl/key.pem:ro
+      - ssl_certs:/etc/nginx/ssl
+    depends_on:
+      - bot
     networks:
       - hamyon_net
 
@@ -46,6 +67,8 @@ services:
 
 volumes:
   pgdata:
+    driver: local
+  ssl_certs:
     driver: local
 
 networks:

@@ -101,7 +101,7 @@ async def handle_voice(message: types.Message, state: FSMContext, session: Async
 @router.message(
     F.text,
     ~F.text.startswith("/"),
-    ~F.text.in_({"➕ Kirim", "➖ Chiqim", "📊 Hisobot", "💳 Qarzlar", "⚙️ Sozlamalar"}),
+    ~F.text.in_({"➕ Kirim", "➖ Chiqim", "📋 Tarix", "📊 Hisobot", "💳 Qarzlar", "⚙️ Sozlamalar", "📱 Mini App"}),
 )
 async def handle_free_text(message: types.Message, state: FSMContext, session: AsyncSession):
     """

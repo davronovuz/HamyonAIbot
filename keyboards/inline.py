@@ -27,6 +27,15 @@ def report_periods() -> InlineKeyboardMarkup:
     return builder.as_markup()
 
 
+def report_detail_button(period: str) -> InlineKeyboardMarkup:
+    """Hisobot ostiga 'Batafsil' tugmasi."""
+    builder = InlineKeyboardBuilder()
+    builder.row(
+        InlineKeyboardButton(text="📋 Batafsil ro'yxat", callback_data=f"report_detail_{period}"),
+    )
+    return builder.as_markup()
+
+
 def debt_actions(debt_id: int) -> InlineKeyboardMarkup:
     """Qarz uchun amallar."""
     builder = InlineKeyboardBuilder()

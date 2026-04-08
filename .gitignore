@@ -44,5 +44,9 @@ htmlcov/
 *.wav
 tmp/
 
+# Node.js / Frontend
+webapp/node_modules/
+webapp/dist/
+
 # Docker volumes (agar bind mount ishlatilsa)
 postgres_data/

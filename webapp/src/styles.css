@@ -1,0 +1,403 @@
+/* Telegram Mini App — theme variables dan foydalanamiz */
+:root {
+  --bg: var(--tg-theme-bg-color, #ffffff);
+  --text: var(--tg-theme-text-color, #1a1a1a);
+  --hint: var(--tg-theme-hint-color, #999999);
+  --link: var(--tg-theme-link-color, #2678b6);
+  --btn: var(--tg-theme-button-color, #2678b6);
+  --btn-text: var(--tg-theme-button-text-color, #ffffff);
+  --secondary-bg: var(--tg-theme-secondary-bg-color, #f0f0f0);
+  --section-bg: var(--tg-theme-section-bg-color, #ffffff);
+
+  --green: #34c759;
+  --red: #ff3b30;
+  --radius: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 70px;
+}
+
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+/* ═══ Cards ═══ */
+.card {
+  background: var(--section-bg);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin: 8px 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.card-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--hint);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+/* ═══ Balance card ═══ */
+.balance-card {
+  background: linear-gradient(135deg, var(--btn), #1a5c96);
+  color: var(--btn-text);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  margin: 12px;
+  text-align: center;
+}
+
+.balance-card .label {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+
+.balance-card .amount {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.balance-card .sub-row {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.balance-card .sub-item {
+  text-align: center;
+}
+
+.balance-card .sub-label {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.balance-card .sub-amount {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.sub-amount.income {
+  color: #a8f0c0;
+}
+
+.sub-amount.expense {
+  color: #ffb3b0;
+}
+
+/* ═══ Period tabs ═══ */
+.period-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  overflow-x: auto;
+}
+
+.period-tab {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  background: var(--secondary-bg);
+  color: var(--text);
+  transition: all 0.2s;
+}
+
+.period-tab.active {
+  background: var(--btn);
+  color: var(--btn-text);
+}
+
+/* ═══ Transaction list ═══ */
+.tx-list {
+  padding: 0 12px;
+}
+
+.tx-item {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  background: var(--section-bg);
+  border-radius: var(--radius);
+  margin-bottom: 6px;
+  gap: 12px;
+}
+
+.tx-icon {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--secondary-bg);
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.tx-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.tx-category {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.tx-desc {
+  font-size: 13px;
+  color: var(--hint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tx-right {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.tx-amount {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.tx-amount.income {
+  color: var(--green);
+}
+
+.tx-amount.expense {
+  color: var(--red);
+}
+
+.tx-time {
+  font-size: 12px;
+  color: var(--hint);
+}
+
+/* ═══ Category breakdown ═══ */
+.cat-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  gap: 10px;
+}
+
+.cat-item + .cat-item {
+  border-top: 1px solid var(--secondary-bg);
+}
+
+.cat-icon {
+  font-size: 20px;
+  width: 36px;
+  text-align: center;
+}
+
+.cat-info {
+  flex: 1;
+}
+
+.cat-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.cat-bar {
+  height: 4px;
+  background: var(--secondary-bg);
+  border-radius: 2px;
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+.cat-bar-fill {
+  height: 100%;
+  background: var(--btn);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+.cat-amount {
+  font-size: 14px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.cat-percent {
+  font-size: 12px;
+  color: var(--hint);
+  text-align: right;
+}
+
+/* ═══ Debt card ═══ */
+.debt-item {
+  padding: 14px 16px;
+  background: var(--section-bg);
+  border-radius: var(--radius);
+  margin-bottom: 6px;
+}
+
+.debt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.debt-person {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.debt-amount {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.debt-meta {
+  font-size: 13px;
+  color: var(--hint);
+  margin-top: 4px;
+}
+
+.debt-overdue {
+  color: var(--red);
+  font-weight: 600;
+}
+
+.debt-type-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.debt-type-badge.lent {
+  background: rgba(52, 199, 89, 0.15);
+  color: var(--green);
+}
+
+.debt-type-badge.borrowed {
+  background: rgba(255, 59, 48, 0.15);
+  color: var(--red);
+}
+
+/* ═══ Chart ═══ */
+.chart-container {
+  padding: 8px 0;
+}
+
+/* ═══ Navbar ═══ */
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--section-bg);
+  border-top: 1px solid var(--secondary-bg);
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0;
+  padding-bottom: env(safe-area-inset-bottom, 8px);
+  z-index: 100;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--hint);
+  font-size: 11px;
+  padding: 4px 12px;
+  transition: color 0.2s;
+}
+
+.nav-item.active {
+  color: var(--btn);
+}
+
+.nav-icon {
+  font-size: 22px;
+  margin-bottom: 2px;
+}
+
+/* ═══ Empty state ═══ */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--hint);
+}
+
+.empty-state .emoji {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.empty-state p {
+  font-size: 15px;
+}
+
+/* ═══ Loading ═══ */
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: var(--hint);
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--secondary-bg);
+  border-top-color: var(--btn);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 12px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ═══ Section header ═══ */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 12px 8px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.section-link {
+  font-size: 14px;
+  color: var(--link);
+  text-decoration: none;
+}
