@@ -15,7 +15,7 @@ async def show_settings(message: types.Message, state: FSMContext, session: Asyn
     user = await get_user_by_telegram_id(session, message.from_user.id)
 
     lang_display = {"uz": "🇺🇿 O'zbekcha", "ru": "🇷🇺 Русский", "en": "🇬🇧 English"}.get(user.language, "—")
-    curr_display = user.currency.value
+    curr_display = user.currency if isinstance(user.currency, str) else user.currency.value
 
     await message.answer(
         f"⚙️ <b>Sozlamalar</b>\n\n"

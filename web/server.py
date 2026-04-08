@@ -35,12 +35,14 @@ app.include_router(transactions_router, prefix="/api")
 app.include_router(debts_router, prefix="/api")
 app.include_router(categories_router, prefix="/api")
 
-# Static files — React build
-STATIC_DIR = Path(__file__).parent.parent / "webapp" / "dist"
-if STATIC_DIR.exists():
-    app.mount("/", StaticFiles(directory=str(STATIC_DIR), html=True), name="static")
-
 
 @app.get("/api/health")
 async def health():
     return {"status": "ok"}
+
+
+# Static files — React build
+# MUHIM: Mount eng oxirida bo'lishi kerak — u barcha yo'llarni catch qiladi
+STATIC_DIR = Path(__file__).parent.parent / "webapp" / "dist"
+if STATIC_DIR.exists():
+    app.mount("/", StaticFiles(directory=str(STATIC_DIR), html=True), name="static")
