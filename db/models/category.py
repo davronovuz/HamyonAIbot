@@ -1,4 +1,4 @@
-from sqlalchemy import BigInteger, String, Boolean, Enum as SAEnum, ForeignKey
+from sqlalchemy import BigInteger, String, Boolean, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from db.base import Base
 import enum
@@ -44,9 +44,7 @@ class Category(Base):
         BigInteger, ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True
     )
     name: Mapped[str] = mapped_column(String(100), nullable=False)
-    type: Mapped[CategoryType] = mapped_column(
-        SAEnum(CategoryType, name="category_type_enum"), nullable=False
-    )
+    type: Mapped[str] = mapped_column(String(20), nullable=False)
     icon: Mapped[str] = mapped_column(String(10), default="📦", nullable=False)
     is_default: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)

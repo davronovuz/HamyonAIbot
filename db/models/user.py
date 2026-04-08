@@ -1,4 +1,4 @@
-from sqlalchemy import BigInteger, String, Boolean, Enum as SAEnum
+from sqlalchemy import BigInteger, String, Boolean
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from db.base import Base
 import enum
@@ -11,10 +11,10 @@ class Language(str, enum.Enum):
 
 
 class Currency(str, enum.Enum):
-    UZS = "UZS"   # O'zbek so'mi
-    USD = "USD"   # Dollar
-    RUB = "RUB"   # Rubl
-    EUR = "EUR"   # Evro
+    UZS = "UZS"
+    USD = "USD"
+    RUB = "RUB"
+    EUR = "EUR"
 
 
 class User(Base):
@@ -24,16 +24,8 @@ class User(Base):
     telegram_id: Mapped[int] = mapped_column(BigInteger, unique=True, nullable=False, index=True)
     full_name: Mapped[str] = mapped_column(String(255), nullable=False)
     username: Mapped[str | None] = mapped_column(String(100), nullable=True)
-    language: Mapped[Language] = mapped_column(
-        SAEnum(Language, name="language_enum"),
-        default=Language.UZ,
-        nullable=False,
-    )
-    currency: Mapped[Currency] = mapped_column(
-        SAEnum(Currency, name="currency_enum"),
-        default=Currency.UZS,
-        nullable=False,
-    )
+    language: Mapped[str] = mapped_column(String(10), default="uz", nullable=False)
+    currency: Mapped[str] = mapped_column(String(10), default="UZS", nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
     is_admin: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
 

@@ -1,4 +1,4 @@
-from sqlalchemy import BigInteger, Numeric, String, Text, Boolean, Date, Enum as SAEnum, ForeignKey
+from sqlalchemy import BigInteger, Numeric, String, Text, Boolean, Date, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from decimal import Decimal
 from datetime import date
@@ -19,9 +19,7 @@ class Debt(Base):
         BigInteger, ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True
     )
 
-    type: Mapped[DebtType] = mapped_column(
-        SAEnum(DebtType, name="debt_type_enum"), nullable=False
-    )
+    type: Mapped[str] = mapped_column(String(20), nullable=False)
 
     # Qarz bergan/olgan odam ismi
     person_name: Mapped[str] = mapped_column(String(200), nullable=False)

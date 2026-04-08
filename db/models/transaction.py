@@ -1,4 +1,4 @@
-from sqlalchemy import BigInteger, Numeric, String, Text, Enum as SAEnum, ForeignKey
+from sqlalchemy import BigInteger, Numeric, String, Text, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from decimal import Decimal
 from db.base import Base
@@ -27,9 +27,7 @@ class Transaction(Base):
         BigInteger, ForeignKey("categories.id", ondelete="SET NULL"), nullable=True
     )
 
-    type: Mapped[TransactionType] = mapped_column(
-        SAEnum(TransactionType, name="transaction_type_enum"), nullable=False, index=True
-    )
+    type: Mapped[str] = mapped_column(String(20), nullable=False, index=True)
 
     # Numeric(15, 2) — 15 ta raqam, 2 ta kasr
     # Masalan: 999_999_999_999_999.99 (yetarli darajada katta)
@@ -41,11 +39,7 @@ class Transaction(Base):
     voice_text: Mapped[str | None] = mapped_column(Text, nullable=True)
 
     # Qaysi usulda kiritilgan
-    source: Mapped[InputSource] = mapped_column(
-        SAEnum(InputSource, name="input_source_enum"),
-        default=InputSource.TEXT,
-        nullable=False,
-    )
+    source: Mapped[str] = mapped_column(String(20), default="text", nullable=False)
 
     # Relationships
     user: Mapped["User"] = relationship(back_populates="transactions", lazy="noload")  # noqa: F821
