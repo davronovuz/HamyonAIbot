@@ -1,0 +1,23 @@
+# Telegram Bot
+aiogram==3.26.0
+
+# Database
+sqlalchemy[asyncio]==2.0.36
+asyncpg==0.30.0
+alembic==1.14.0
+
+# AI / Voice
+openai==1.56.0
+pydub==0.25.1          # .ogg → .mp3 konvertatsiya
+
+# Scheduler
+apscheduler==3.10.4
+
+# Grafiklar (hisobot uchun)
+matplotlib==3.10.0
+Pillow==11.1.0         # matplotlib image output uchun
+
+# Utils
+python-dotenv==1.2.2
+aiofiles==25.1.0
+aiohttp==3.13.5

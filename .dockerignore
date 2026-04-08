@@ -1,0 +1,38 @@
+# Git
+.git
+.gitignore
+
+# Environment (container ichiga env_file orqali beriladi)
+.env
+*.env
+
+# Python cache
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.egg-info
+
+# Virtual environment
+venv/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+.DS_Store
+
+# Logs va temp
+*.log
+logs/
+*.ogg
+*.mp3
+tmp/
+
+# Docker o'zi
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Docs
+*.md

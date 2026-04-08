@@ -1,0 +1,53 @@
+services:
+
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-hamyonai}
+      POSTGRES_USER: ${POSTGRES_USER:-hamyon}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-hamyon} -d ${POSTGRES_DB:-hamyonai}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - hamyon_net
+
+  bot:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - hamyon_net
+
+  # pgAdmin — faqat development uchun
+  # Ishlatish: docker compose --profile dev up
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    restart: unless-stopped
+    profiles: ["dev"]
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@hamyon.ai}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin}
+    ports:
+      - "5050:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - hamyon_net
+
+volumes:
+  pgdata:
+    driver: local
+
+networks:
+  hamyon_net:
+    driver: bridge
