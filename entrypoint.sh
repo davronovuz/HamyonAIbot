@@ -3,14 +3,14 @@ set -e
 
 echo "⏳ PostgreSQL tayyor bo'lishini kutmoqda..."
 
-# DB ulanguncha kutamiz (max 30 sekund)
 until python3 -c "
 import asyncio, asyncpg, os, sys
 async def check():
     try:
-        conn = await asyncpg.connect(os.environ['DB_URL'].replace('postgresql+asyncpg://', 'postgresql://'))
+        url = os.environ['DB_URL'].replace('postgresql+asyncpg://', 'postgresql://')
+        conn = await asyncpg.connect(url)
         await conn.close()
-    except Exception as e:
+    except Exception:
         sys.exit(1)
 asyncio.run(check())
 " 2>/dev/null; do
@@ -19,9 +19,10 @@ asyncio.run(check())
 done
 
 echo "✅ PostgreSQL tayyor."
-
 echo "🔄 Migratsiyalar ishga tushirilmoqda..."
+
 alembic upgrade head
 
+echo "✅ Migratsiyalar tugadi."
 echo "🚀 Bot ishga tushmoqda..."
 exec python3 app.py
