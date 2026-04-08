@@ -6,6 +6,7 @@ from handlers import setup_handlers
 from middlewares import ThrottlingMiddleware, DbSessionMiddleware
 from services import create_scheduler
 from db.base import create_tables
+from db.models import User, Category, Transaction, Debt, Budget  # noqa: F401 — metadata uchun shart
 
 
 async def main() -> None:
