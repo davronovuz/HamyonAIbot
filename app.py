@@ -5,9 +5,13 @@ from loader import dp, bot
 from handlers import setup_handlers
 from middlewares import ThrottlingMiddleware, DbSessionMiddleware
 from services import create_scheduler
+from db.base import create_tables
 
 
 async def main() -> None:
+    # Jadvallarni yaratish (IF NOT EXISTS — xavfsiz)
+    await create_tables()
+
     # Handlerlarni ulash
     main_router = setup_handlers()
     dp.include_router(main_router)
